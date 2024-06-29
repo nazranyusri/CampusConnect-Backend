@@ -178,7 +178,7 @@ function processOrderList(orderId, userId, menuIds, quantities, total, status, b
                             billingAddress,
                             datePurchased
                         };
-                        console.log("Final object: ", finalObject);
+                        // console.log("Final object: ", finalObject);
                         resolve(finalObject);
                     });
                 }
@@ -294,7 +294,7 @@ function processOrder(orderId, userId, businessId, menuIds, quantities, total, s
                             billingAddress,
                             datePurchased
                         };
-                        console.log("Final object: ", finalObject);
+                        // console.log("Final object: ", finalObject);
                         resolve(finalObject);
                     });
                 }
@@ -416,7 +416,7 @@ const createOrder = async (customer, data) => {
 const endpointSecret = process.env.WEBHOOK_KEY;
 const webhookStripe = (req, res) => {
     const sig = req.headers['stripe-signature'];
-
+    console.log("Stripe signature", sig);
     let event;
     let eventType;
     let dataObject;
