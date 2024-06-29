@@ -18,5 +18,4 @@ app.use('/program', programRoutes);
 app.use('/business', businessRoutes);
 app.use('/survey', surveyRoutes);
 app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
-
 module.exports = app;
