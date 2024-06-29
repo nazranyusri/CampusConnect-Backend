@@ -1,5 +1,4 @@
-// const mysql = require('mysql');
-const Sequelize = require('sequelize');
+const mysql = require('mysql');
 require('dotenv').config();
 
 // Configuration for GCP MySQL connection
@@ -12,34 +11,21 @@ require('dotenv').config();
 // const connection = mysql.createConnection(config);
 
 //localhost MYSQL connection
-// var connection = mysql.createConnection({
-//     port: process.env.DB_PORT,
-//     host: process.env.DB_HOST,
-//     user: process.env.DB_USER,
-//     password: process.env.DB_PASS,
-//     database: process.env.DB_NAME
-// });
+var connection = mysql.createConnection({
+    port: process.env.DB_PORT,
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASS,
+    database: process.env.DB_NAME
+});
 
-// connection.connect((err) => {
-//     if (!err){
-//         console.log("Database is connected");
-//     }
-//     else{
-//         console.log("Error while connecting with database", err);
-//     }
-// });
-
-let connection;
-
-connection = new Sequelize(
-    process.env.DB_NAME,
-    process.env.DB_USER,
-    process.env.DB_PASS,
-    {
-        host: process.env.DB_HOST,
-        dialect: 'mysql',
-        port: process.env.DB_PORT,
+connection.connect((err) => {
+    if (!err){
+        console.log("Database is connected");
     }
-)
+    else{
+        console.log("Error while connecting with database", err);
+    }
+});
 
 module.exports = connection;
