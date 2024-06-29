@@ -3,5 +3,5 @@ const http = require('http');
 const app = require('./index');
 
 //listen on port
-const PORT = process.env.PORT;
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`Server is running on PORT ${PORT}`));
