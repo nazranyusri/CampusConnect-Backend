@@ -29,19 +29,19 @@ const updateContent = (req, res) => {
                 return res.status(500).json(err);
             }
 
-            const oldImagePath = result[0].image;
-            if (content.image === oldImagePath) {
-                // console.log("Same image file " + content.image + " " + oldImagePath);
-            } else (
-                // console.log("Different image file " + content.image + " " + oldImagePath),
-                fs.unlink(oldImagePath, (err) => {
-                    if (err) {
-                        console.error(err);
-                        return res.status(500).json({ message: "Error deleting old image file" });
-                    }
-                    // console.log("Old image file deleted successfully");
-                })
-            )
+            // const oldImagePath = result[0].image;
+            // if (content.image === oldImagePath) {
+            //     // console.log("Same image file " + content.image + " " + oldImagePath);
+            // } else (
+            //     // console.log("Different image file " + content.image + " " + oldImagePath),
+            //     fs.unlink(oldImagePath, (err) => {
+            //         if (err) {
+            //             console.error(err);
+            //             return res.status(500).json({ message: "Error deleting old image file" });
+            //         }
+            //         // console.log("Old image file deleted successfully");
+            //     })
+            // )
     
             persakaModel.updateContent(content, (err, result) => {
                 if (!err) {

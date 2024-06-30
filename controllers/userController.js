@@ -141,19 +141,19 @@ const updateProfile = (req, res) => {
             return res.status(403).json({ message: "Forbidden" });
         }
 
-        const oldImagePath = result[0].image;
-        if (user.image === oldImagePath || oldImagePath === null) {
-            // console.log("Same image file " + user.image + " " + oldImagePath);
-        } else (
-            // console.log("Different image file " + user.image + " " + oldImagePath),
-            fs.unlink(oldImagePath, (err) => {
-                if (err) {
-                    console.error(err);
-                    return res.status(500).json({ message: "Error deleting old image file" });
-                }
-                // console.log("Old image file deleted successfully");
-            })
-        )
+        // const oldImagePath = result[0].image;
+        // if (user.image === oldImagePath || oldImagePath === null) {
+        //     // console.log("Same image file " + user.image + " " + oldImagePath);
+        // } else (
+        //     // console.log("Different image file " + user.image + " " + oldImagePath),
+        //     fs.unlink(oldImagePath, (err) => {
+        //         if (err) {
+        //             console.error(err);
+        //             return res.status(500).json({ message: "Error deleting old image file" });
+        //         }
+        //         // console.log("Old image file deleted successfully");
+        //     })
+        // )
 
         userModel.updateProfile(user, (err, result) => {
             if (!err) {
@@ -179,15 +179,15 @@ const deleteUser = (req, res) => {
             if (result.affectedRows === 0) {
                 return res.status(404).json({ message: "User id not found" });
             }
-            if (imagePath !== 'null') {
-                fs.unlink(`uploads/${imagePath}`, (err) => {
-                    if (err) {
-                        console.error(err);
-                        return res.status(500).json({ message: "Error deleting image file" });
-                    }
-                    // return res.status(200).json({ message: "User deleted successfully" });
-                });
-            }
+            // if (imagePath !== 'null') {
+            //     fs.unlink(`uploads/${imagePath}`, (err) => {
+            //         if (err) {
+            //             console.error(err);
+            //             return res.status(500).json({ message: "Error deleting image file" });
+            //         }
+            //         // return res.status(200).json({ message: "User deleted successfully" });
+            //     });
+            // }
             return res.status(200).json({ message: "User deleted successfully" });
         } else {
             return res.status(500).json(err);

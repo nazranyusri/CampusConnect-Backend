@@ -497,19 +497,19 @@ const updateBusiness = (req, res) => {
             return res.status(403).json({ message: "Forbidden" });
         }
 
-        const oldImagePath = result[0].image;
-        if (business.image === oldImagePath) {
-            // console.log("Same image file " + business.image + " " + oldImagePath);
-        } else (
-            // console.log("Different image file " + business.image + " " + oldImagePath),
-            fs.unlink(oldImagePath, (err) => {
-                if (err) {
-                    console.error(err);
-                    return res.status(500).json({ message: "Error deleting old image file" });
-                }
-                // console.log("Old image file deleted successfully");
-            })
-        )
+        // const oldImagePath = result[0].image;
+        // if (business.image === oldImagePath) {
+        //     // console.log("Same image file " + business.image + " " + oldImagePath);
+        // } else (
+        //     // console.log("Different image file " + business.image + " " + oldImagePath),
+        //     fs.unlink(oldImagePath, (err) => {
+        //         if (err) {
+        //             console.error(err);
+        //             return res.status(500).json({ message: "Error deleting old image file" });
+        //         }
+        //         // console.log("Old image file deleted successfully");
+        //     })
+        // )
 
         businessModel.updateBusiness(business, (err, result) => {
             if (err) {
@@ -571,13 +571,13 @@ const deleteBusiness = (req, res) => {
                 }
 
                 // Delete the corresponding image file from the 'uploads/' directory
-                fs.unlink(`uploads/${imagePath}`, (err) => {
-                    if (err) {
-                        console.error(err);
-                        return res.status(500).json({ message: "Error deleting image file" });
-                    }
-                    return res.status(200).json({ message: "Business deleted successfully" });
-                });
+                // fs.unlink(`uploads/${imagePath}`, (err) => {
+                //     if (err) {
+                //         console.error(err);
+                //         return res.status(500).json({ message: "Error deleting image file" });
+                //     }
+                //     return res.status(200).json({ message: "Business deleted successfully" });
+                // });
             } else {
                 return res.status(500).json(err);
             }

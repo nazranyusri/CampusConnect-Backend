@@ -114,19 +114,19 @@ const updateProgram = (req, res) => {
             return res.status(403).json({ message: "Forbidden" });
         }
 
-        const oldImagePath = result[0].image;
-        if (program.image === oldImagePath) {
-            // console.log("Same image file " + program.image + " " + oldImagePath);
-        } else (
-            // console.log("Different image file " + program.image + " " + oldImagePath),
-            fs.unlink(oldImagePath, (err) => {
-                if (err) {
-                    console.error(err);
-                    return res.status(500).json({ message: "Error deleting old image file" });
-                }
-                // console.log("Old image file deleted successfully");
-            })
-        )
+        // const oldImagePath = result[0].image;
+        // if (program.image === oldImagePath) {
+        //     // console.log("Same image file " + program.image + " " + oldImagePath);
+        // } else (
+        //     // console.log("Different image file " + program.image + " " + oldImagePath),
+        //     fs.unlink(oldImagePath, (err) => {
+        //         if (err) {
+        //             console.error(err);
+        //             return res.status(500).json({ message: "Error deleting old image file" });
+        //         }
+        //         // console.log("Old image file deleted successfully");
+        //     })
+        // )
 
         programModel.updateProgram(program, (err, result) => {
             if (!err) {
@@ -169,13 +169,13 @@ const deleteProgram = (req, res) => {
                 }
 
                 // Delete the corresponding image file from the 'uploads/' directory
-                fs.unlink(`uploads/${imagePath}`, (err) => {
-                    if (err) {
-                        console.error(err);
-                        return res.status(500).json({ message: "Error deleting image file" });
-                    }
-                    return res.status(200).json({ message: "Program deleted successfully" });
-                });
+                // fs.unlink(`uploads/${imagePath}`, (err) => {
+                //     if (err) {
+                //         console.error(err);
+                //         return res.status(500).json({ message: "Error deleting image file" });
+                //     }
+                //     return res.status(200).json({ message: "Program deleted successfully" });
+                // });
             } else {
                 return res.status(500).json(err);
             }
