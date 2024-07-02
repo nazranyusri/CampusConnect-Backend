@@ -167,6 +167,7 @@ const deleteProgram = (req, res) => {
                 if (result.affectedRows === 0) {
                     return res.status(404).json({ message: "Program id not found" });
                 }
+                return res.status(200).json({ message: "Program deleted successfully" });
 
                 // Delete the corresponding image file from the 'uploads/' directory
                 // fs.unlink(`uploads/${imagePath}`, (err) => {

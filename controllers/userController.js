@@ -179,6 +179,7 @@ const deleteUser = (req, res) => {
             if (result.affectedRows === 0) {
                 return res.status(404).json({ message: "User id not found" });
             }
+            return res.status(200).json({ message: "User deleted successfully" });
             // if (imagePath !== 'null') {
             //     fs.unlink(`uploads/${imagePath}`, (err) => {
             //         if (err) {

@@ -569,6 +569,7 @@ const deleteBusiness = (req, res) => {
                 if (result.affectedRows === 0) {
                     return res.status(404).json({ message: "Business id not found" });
                 }
+                return res.status(200).json({ message: "Business deleted successfully" });
 
                 // Delete the corresponding image file from the 'uploads/' directory
                 // fs.unlink(`uploads/${imagePath}`, (err) => {
