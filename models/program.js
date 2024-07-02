@@ -8,7 +8,7 @@ const getAllProgram = (callback) => {
 
 // Get program by id
 const getProgramById = (id, callback) => {
-    const sql = 'SELECT p.programId, p.userId, p.description, p.endDate, TIME_FORMAT(p.endTime, "%h:%i %p") AS endTime, p.location, p.programTitle, p.startDate, TIME_FORMAT(p.startTime, "%h:%i %p") AS startTime, p.tag, p.telNo, p.telName, p.image, p.datePublished, u.username AS createdBy, u.image AS profileImage FROM program p JOIN user u ON p.userId = u.userId WHERE p.programId = ?';
+    const sql = 'SELECT p.programId, p.userId, p.description, p.endDate, TIME_FORMAT(p.endTime, "%h:%i %p") AS endTime, p.location, p.programTitle, p.startDate, TIME_FORMAT(p.startTime, "%h:%i %p") AS startTime, p.tag, p.telNo, p.telName, p.image, p.isRegister, p.datePublished, u.username AS createdBy, u.image AS profileImage FROM program p JOIN user u ON p.userId = u.userId WHERE p.programId = ?';
     connection.query(sql, id, callback);
 };
 
@@ -32,17 +32,17 @@ const getProgramHistory = (userId, callback) => {
 
 // Create program
 const addProgram = (program, callback) => {
-    const sql = `INSERT INTO program (userId, description, endDate, endTime, location, programTitle, startDate, startTime, tag, telNo, telName, image, datePublished) 
-               VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
+    const sql = `INSERT INTO program (userId, description, endDate, endTime, location, programTitle, startDate, startTime, tag, telNo, telName, image, isRegister, datePublished) 
+               VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
     connection.query(sql, [program.userId, program.description, program.endDate, program.endTime, program.location, program.programTitle, program.startDate,
-    program.startTime, program.tag, program.telNo, program.telName, program.image, program.datePublished], callback);
+    program.startTime, program.tag, program.telNo, program.telName, program.image, program.acceptRegistration, program.datePublished], callback);
 };
 
 // Update program
 const updateProgram = (program, callback) => {
-    const sql = 'UPDATE program SET description = ?, endDate = ?, endTime = ?, location = ?, programTitle = ?, startDate = ?, startTime = ?, tag = ?, telNo = ?, telName = ?, image = ? WHERE programId = ?';
+    const sql = 'UPDATE program SET description = ?, endDate = ?, endTime = ?, location = ?, programTitle = ?, startDate = ?, startTime = ?, tag = ?, telNo = ?, telName = ?, image = ?, isRegister = ? WHERE programId = ?';
     connection.query(sql, [program.description, program.endDate, program.endTime, program.location, program.programTitle, program.startDate,
-    program.startTime, program.tag, program.telNo, program.telName, program.image, program.id], callback);
+    program.startTime, program.tag, program.telNo, program.telName, program.image, program.acceptRegistration, program.id], callback);
 };
 
 // Delete program

@@ -32,15 +32,15 @@ const getBusinessHistory = (userId, callback) => {
 
 //create business
 const addBusiness = (business, callback) => {
-    const sql = `INSERT INTO business (businessTitle, userId, description, location, tag, telNo, telName, image, datePublished) 
-               VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`;
-    connection.query(sql, [business.businessTitle, business.userId, business.description, business.location, business.tag, business.telNo, business.telName, business.image, business.datePublished], callback);
+    const sql = `INSERT INTO business (businessTitle, userId, description, location, tag, telNo, telName, image, isAcceptOrder, datePublished) 
+               VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`;
+    connection.query(sql, [business.businessTitle, business.userId, business.description, business.location, business.tag, business.telNo, business.telName, business.image, business.acceptOrder, business.datePublished], callback);
 };
 
 //update business
 const updateBusiness = (business, callback) => {
-    const sql = 'UPDATE business SET businessTitle = ?, description = ?, location = ?, tag = ?, telNo = ?, telName = ?, image = ? WHERE businessId = ?';
-    connection.query(sql, [business.businessTitle, business.description, business.location, business.tag, business.telNo, business.telName, business.image, business.id], callback);
+    const sql = 'UPDATE business SET businessTitle = ?, description = ?, location = ?, tag = ?, telNo = ?, telName = ?, image = ?, isAcceptOrder = ? WHERE businessId = ?';
+    connection.query(sql, [business.businessTitle, business.description, business.location, business.tag, business.telNo, business.telName, business.image, business.acceptOrder, business.id], callback);
 };
 
 //delete business
